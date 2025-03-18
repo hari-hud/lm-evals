@@ -1,0 +1,78 @@
+[tool.poetry]
+name = "lm-evals"
+version = "0.1.0"
+description = "Unified Language Model Evaluation Framework"
+authors = ["Your Name <your.email@example.com>"]
+readme = "README.md"
+packages = [{include = "lm_evals"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+torch = "^2.1.0"
+transformers = "^4.36.0"
+datasets = "^2.15.0"
+evaluate = "^0.4.0"
+numpy = "^1.24.0"
+pandas = "^2.1.0"
+tqdm = "^4.66.0"
+pydantic = "^2.0.0"
+openai = "^1.0.0"
+langchain = "^0.1.0"
+chromadb = "^0.4.0"
+nvidia-nim = "^0.1.0"
+rouge-score = "^0.1.2"
+nltk = "^3.8.1"
+bert-score = "^0.3.13"
+sacrebleu = "^2.3.1"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.0"
+pytest-cov = "^4.1.0"
+pytest-mock = "^3.11.1"
+pytest-asyncio = "^0.21.0"
+black = "^23.7.0"
+isort = "^5.12.0"
+mypy = "^1.4.1"
+responses = "^0.23.1"
+coverage = "^7.2.7"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = """
+    --cov=lm_evals
+    --cov-report=term-missing
+    --cov-report=xml:coverage.xml
+    --cov-report=html:coverage_html
+    --cov-fail-under=80
+"""
+asyncio_mode = "auto"
+
+[tool.coverage.run]
+source = ["lm_evals"]
+omit = [
+    "tests/*",
+    "**/__init__.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "pass",
+    "raise ImportError",
+]
+
+[tool.black]
+line-length = 88
+target-version = ["py310"]
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3 
